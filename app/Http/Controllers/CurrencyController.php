@@ -7,17 +7,13 @@ use Illuminate\Http\Request;
 
 class CurrencyController extends Controller
 {
-    /**
-     * Listar todas las divisas.
-     */
+
     public function index()
     {
         return response()->json(Currency::all(), 200);
     }
 
-    /**
-     * Crear una nueva divisa.
-     */
+  
     public function store(Request $request)
     {
         $request->validate([
