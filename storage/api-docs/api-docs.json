@@ -13,6 +13,217 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/currencies": {
+            "get": {
+                "tags": [
+                    "Currencies"
+                ],
+                "summary": "Obtener todas las divisas",
+                "operationId": "73e0a13248f9f6aea618716227eab68a",
+                "responses": {
+                    "200": {
+                        "description": "Lista de divisas obtenida exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "example": "Dólar"
+                                            },
+                                            "symbol": {
+                                                "type": "string",
+                                                "example": "$"
+                                            },
+                                            "exchange_rate": {
+                                                "type": "number",
+                                                "format": "float",
+                                                "example": 1
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Currencies"
+                ],
+                "summary": "Crear una nueva divisa",
+                "operationId": "57e1c3f26ae9c82bd5996ac5bb738c5b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Euro"
+                                    },
+                                    "symbol": {
+                                        "type": "string",
+                                        "example": "€"
+                                    },
+                                    "exchange_rate": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 1.2
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Divisa creada exitosamente"
+                    },
+                    "422": {
+                        "description": "Error de validación"
+                    }
+                }
+            }
+        },
+        "/api/currencies/{id}": {
+            "get": {
+                "tags": [
+                    "Currencies"
+                ],
+                "summary": "Obtener una divisa por ID",
+                "operationId": "23440d4caad0c601f680b655f9c907f4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Divisa encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Dólar"
+                                        },
+                                        "symbol": {
+                                            "type": "string",
+                                            "example": "$"
+                                        },
+                                        "exchange_rate": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 1
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Divisa no encontrada"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Currencies"
+                ],
+                "summary": "Actualizar una divisa",
+                "operationId": "8a397517013e49ac5bf2db204caaa130",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Libra Esterlina"
+                                    },
+                                    "symbol": {
+                                        "type": "string",
+                                        "example": "£"
+                                    },
+                                    "exchange_rate": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 1.5
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Divisa actualizada exitosamente"
+                    },
+                    "404": {
+                        "description": "Divisa no encontrada"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Currencies"
+                ],
+                "summary": "Eliminar una divisa",
+                "operationId": "c5d45f11f33d23039acf71db15a4cf31",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Divisa eliminada exitosamente"
+                    },
+                    "404": {
+                        "description": "Divisa no encontrada"
+                    }
+                }
+            }
+        },
         "/api/products/": {
             "get": {
                 "tags": [
@@ -25,15 +236,13 @@
                         "description": "Lista de productos obtenida exitosamente"
                     }
                 }
-            }
-        },
-        "/api/products/createProduct": {
+            },
             "post": {
                 "tags": [
                     "Productos"
                 ],
                 "summary": "Crear un nuevo producto",
-                "operationId": "a600449d5022c3462616abd7de97c8df",
+                "operationId": "8762ae7428e50d2c987b2e62ca537e01",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -117,15 +326,13 @@
                         "description": "Producto no encontrado"
                     }
                 }
-            }
-        },
-        "/api/products/updateProduct/{id}": {
+            },
             "put": {
                 "tags": [
                     "Productos"
                 ],
                 "summary": "Actualizar un producto existente",
-                "operationId": "a3e9bf819266ca26506632a3f45ff1ef",
+                "operationId": "154f0378a5032cc055c841baa150ba70",
                 "parameters": [
                     {
                         "name": "id",
@@ -172,15 +379,13 @@
                         "description": "Producto no encontrado"
                     }
                 }
-            }
-        },
-        "/api/products/deleteProduct/{id}": {
+            },
             "delete": {
                 "tags": [
                     "Productos"
                 ],
                 "summary": "Eliminar un producto",
-                "operationId": "8a700375514f6a7a8e8848da77bf875b",
+                "operationId": "0fc020dce677361974d68193a62f9b18",
                 "parameters": [
                     {
                         "name": "id",
@@ -271,15 +476,13 @@
                         }
                     }
                 }
-            }
-        },
-        "/api/products/{id}/createPrices": {
+            },
             "post": {
                 "tags": [
                     "Precios de Productos"
                 ],
                 "summary": "Crear un precio para un producto",
-                "operationId": "926559cd95803f0a1384c1ee0a17436e",
+                "operationId": "bed1f398127625c2b3eccd89f348db35",
                 "parameters": [
                     {
                         "name": "id",
@@ -323,6 +526,10 @@
         }
     },
     "tags": [
+        {
+            "name": "Currencies",
+            "description": "Currencies"
+        },
         {
             "name": "Productos",
             "description": "Productos"

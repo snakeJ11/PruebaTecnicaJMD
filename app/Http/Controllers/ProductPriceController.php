@@ -84,7 +84,7 @@ class ProductPriceController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/products/{id}/createPrices",
+     *     path="/api/products/{id}/prices",
      *     summary="Crear un precio para un producto",
      *     tags={"Precios de Productos"},
      *     @OA\Parameter(

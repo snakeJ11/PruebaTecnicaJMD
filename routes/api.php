@@ -25,12 +25,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Rutas de la API
 Route::prefix('products')->group(function () {
     Route::get('/', [ProductController::class, 'listProducts']); 
-    Route::post('/createProduct', [ProductController::class, 'createProduct']); 
+    Route::post('/', [ProductController::class, 'createProduct']); 
     Route::get('/{id}', [ProductController::class, 'getById']); 
-    Route::put('/updateProduct/{id}', [ProductController::class, 'updateProduct']); 
-    Route::delete('/deleteProduct/{id}', [ProductController::class, 'deleteProduct']); 
+    Route::put('/{id}', [ProductController::class, 'updateProduct']); 
+    Route::delete('/{id}', [ProductController::class, 'deleteProduct']); 
     Route::get('/{id}/prices', [ProductPriceController::class, 'getPrices']); 
-    Route::post('/{id}/createPrices', [ProductPriceController::class, 'createPrices']); 
+    Route::post('/{id}/prices', [ProductPriceController::class, 'createPrices']); 
 });
 
 

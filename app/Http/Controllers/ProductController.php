@@ -45,7 +45,7 @@ class ProductController extends Controller
 
         /**
          * @OA\Post(
-         *     path="/api/products/createProduct",
+         *     path="/api/products/",
          *     summary="Crear un nuevo producto",
          *     tags={"Productos"},
          *     @OA\RequestBody(
@@ -133,7 +133,7 @@ class ProductController extends Controller
 
         /**
          * @OA\Put(
-         *     path="/api/products/updateProduct/{id}",
+         *     path="/api/products/{id}",
          *     summary="Actualizar un producto existente",
          *     tags={"Productos"},
          *     @OA\Parameter(
@@ -191,7 +191,7 @@ class ProductController extends Controller
 
         /**
          * @OA\Delete(
-         *     path="/api/products/deleteProduct/{id}",
+         *     path="/api/products/{id}",
          *     summary="Eliminar un producto",
          *     tags={"Productos"},
          *     @OA\Parameter(
